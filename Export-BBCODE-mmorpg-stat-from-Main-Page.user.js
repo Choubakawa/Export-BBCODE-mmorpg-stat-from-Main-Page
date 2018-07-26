@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      0.7
+// @version      0.8
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -154,7 +154,8 @@ function generateBBCODE( values ) {
         }
     }
     bbcode += '[/table][/center]\n';
-    bbcode += '[center][size=8]By www.mmorpg-stat.eu [color=#aaaaaa]' + update + '[/color][/size][/center]';
+    bbcode += '[center][size=8]By www.mmorpg-stat.eu [color=#aaaaaa]' + update + '[/color][/size][/center]\n';
+    bbcode += '[center][size=8]with [url=https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page]Export BBCODE mmorpg-stat[/url] by [url=https://twitter.com/Choubakawa]Choubakawa[/url][/size][/center]';
 
     return bbcode;
 }
