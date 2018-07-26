@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      0.1
+// @version      0.2
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -59,6 +59,7 @@ function addButtonExport() {
 }
 
 function getTopFLop() {
+    value.tops = value.flops = [];
     let top = {
         "position":"",
         "pseudo":"",
