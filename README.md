@@ -17,5 +17,5 @@ It depends on which language you use on [mmorpg-stat].
 ![Screen_mmorpg-stat](/preview/Screen_mmorpg-stat.JPG)
 ![Screen_forum_1](/preview/Screen_export_forumactif.JPG)
 
-[OpenUserJs]: <https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat-from-Main-Page>
+[OpenUserJs]: <https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page>
 [mmorpg-stat]: <https://www.mmorpg-stat.eu/>
