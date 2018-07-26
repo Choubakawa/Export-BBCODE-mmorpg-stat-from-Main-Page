@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Export TOP/FLOP mmorpg-stat from Main Page
+// @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
 // @version      0.1
 // @description  Generate an export in BBOCDE from the TOP/FLOP for forum.
