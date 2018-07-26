@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      0.5
+// @version      0.7
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -129,7 +129,7 @@ function generateBBCODE( values ) {
     bbcode += '[center][table]\n';
     for(let i=0; i<values.tops.length; i++){
         if( values.tops[i].pseudo.length > 0 ) {
-            bbcode += '[tr style=][td][size=10]' + values.tops[i].position + '[/size][/td]\n';
+            bbcode += '[tr][td][size=10]' + values.tops[i].position + '[/size][/td]\n';
             bbcode += '[td][size=12][b][color=#17B4FF]' + values.tops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.tops[i].alliance + ' [/i][/color][/size][/td]\n';
             bbcode += '[td][size=10]' + values.tops[i].points + '[/size][/td]\n';
             bbcode += '[td][color=#00cc00][size=11][b]' + values.tops[i].progression + ' [/b][/size][/color][/td]\n';
@@ -137,7 +137,7 @@ function generateBBCODE( values ) {
             bbcode += '[/tr]\n\n';
         }
     }
-    bbcode += '[tr style=][td][/td]\n';
+    bbcode += '[tr][td][/td]\n';
     bbcode += '[td][/td]\n';
     bbcode += '[td][/td]\n';
     bbcode += '[td][/td]\n';
@@ -145,7 +145,7 @@ function generateBBCODE( values ) {
     bbcode += '[/tr]\n\n';
     for(let i=0; i<values.flops.length; i++){
         if( values.flops[i].pseudo.length > 0 ) {
-            bbcode += '[tr style=][td][size=10]' + values.flops[i].position + '[/size][/td]\n';
+            bbcode += '[tr][td][size=10]' + values.flops[i].position + '[/size][/td]\n';
             bbcode += '[td][size=12][b][color=#17B4FF]' + values.flops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.flops[i].alliance + ' [/i][/color][/size][/td]\n';
             bbcode += '[td][size=10]' + values.flops[i].points + '[/size][/td]\n';
             bbcode += '[td][color=#FF0000][size=11][b]' + values.flops[i].progression + ' [/b][/size][/color][/td]\n';
