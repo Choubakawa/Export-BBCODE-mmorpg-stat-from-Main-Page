@@ -6,8 +6,8 @@
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
 // @supportURL   https://github.com/Choubakawa/Export-BBCODE-mmorpg-stat-from-Main-Page/issues
-// @updateURL    https://openuserjs.org/meta/Choubakawa/Export-BBCODE-mmorpg-stat-from-Main-Page.meta.js
-// @downloadURL  https://openuserjs.org/install/Choubakawa/Export-BBCODE-mmorpg-stat-from-Main-Page.user.js
+// @updateURL    https://openuserjs.org/meta/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page.meta.js
+// @downloadURL  https://openuserjs.org/install/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page.user.js
 // @license MIT
 // ==/UserScript==
 
