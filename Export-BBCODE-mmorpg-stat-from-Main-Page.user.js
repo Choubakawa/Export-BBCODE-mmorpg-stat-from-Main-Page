@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      0.3
+// @version      0.5
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -17,7 +17,7 @@ var parentButtonDiv;
 function addButtonExport() {
     var buttonExport = document.querySelector("img[src='img/export.png']");
 
-    if( buttonExport != null && buttonExport != 'undefined' ) {
+    if( buttonExport !== null && buttonExport != 'undefined' ) {
 
         var spanButtonExport = buttonExport.closest( 'span' );
         parentButtonDiv = spanButtonExport.parentNode;
