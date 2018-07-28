@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      0.8
+// @version      1.0
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -19,38 +19,38 @@ function addButtonExport() {
 
     if( buttonExport !== null && buttonExport != 'undefined' ) {
 
-        var spanButtonExport = buttonExport.closest( 'span' );
+       var spanButtonExport = buttonExport.closest( 'span' );
         parentButtonDiv = spanButtonExport.parentNode;
-        let spanToAdd = document.createElement("span");
-        spanToAdd.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
-        let spanToAdd2 = document.createElement("span");
-        spanToAdd2.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
-        spanToAdd2.setAttribute( 'id', 'spanTextCopied' );
+        let spanNewButton = document.createElement("span");
+        spanNewButton.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+        let spanTextCP = document.createElement("span");
+        spanTextCP.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+        spanTextCP.setAttribute( 'id', 'spanTextCopied' );
 
-        let aToAdd = document.createElement("a");
-        aToAdd.setAttribute('class', 'tooltip_new1');
-        aToAdd.setAttribute('id', 'exportButtonAdded');
-        aToAdd.setAttribute('style', 'cursor:pointer');
+        let aButton = document.createElement("a");
+        aButton.setAttribute('class', 'tooltip_new1');
+        aButton.setAttribute('id', 'exportButtonAdded');
+        aButton.setAttribute('style', 'cursor:pointer');
 
-        let imgToAdd = document.createElement("img");
-        imgToAdd.setAttribute('src', 'img/list_plus.png');
-        imgToAdd.setAttribute('id', 'imgButtonAdded');
-        imgToAdd.setAttribute('width', '16px');
-        imgToAdd.setAttribute('height', '14px');
-        imgToAdd.setAttribute('border', '0');
-        imgToAdd.setAttribute('align', 'absmiddle');
+        let imgButton = document.createElement("img");
+        imgButton.setAttribute('src', 'img/list_plus.png');
+        imgButton.setAttribute('id', 'imgButtonAdded');
+        imgButton.setAttribute('width', '16px');
+        imgButton.setAttribute('height', '14px');
+        imgButton.setAttribute('border', '0');
+        imgButton.setAttribute('align', 'absmiddle');
 
         let tooltip = document.createElement("em");
         let textTool = document.createElement("center");
 
         textTool.append( "Copier export BBCODE " );
         tooltip.append( textTool );
-        aToAdd.append( imgToAdd );
-        aToAdd.append( tooltip );
-        spanToAdd.append( aToAdd );
+        aButton.append( imgButton );
+        aButton.append( tooltip );
+        spanNewButton.append( aButton );
 
-        parentButtonDiv.insertBefore(spanToAdd, spanButtonExport.nextSibling);
-        parentButtonDiv.insertBefore(spanToAdd2, spanToAdd.nextSibling);
+        parentButtonDiv.insertBefore(spanNewButton, spanButtonExport.nextSibling);
+        parentButtonDiv.insertBefore(spanTextCP, spanNewButton.nextSibling);
 
         return true;
     } else {
@@ -126,36 +126,28 @@ function generateBBCODE( values ) {
 
     let bbcode = '[center][size=11][b]' + titleTop + ' / ' + titleFlop + ' ' + universe + ' [' + country + '][/b][/size][/center]\n';
     bbcode += '[center][size=11][b]' + type + ' ' + day + '[/b][/size][/center]\n';
-    bbcode += '[center][table]\n';
-    for(let i=0; i<values.tops.length; i++){
-        if( values.tops[i].pseudo.length > 0 ) {
-            bbcode += '[tr][td][size=10]' + values.tops[i].position + '[/size][/td]\n';
-            bbcode += '[td][size=12][b][color=#17B4FF]' + values.tops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.tops[i].alliance + ' [/i][/color][/size][/td]\n';
-            bbcode += '[td][size=10]' + values.tops[i].points + '[/size][/td]\n';
-            bbcode += '[td][color=#00cc00][size=11][b]' + values.tops[i].progression + ' [/b][/size][/color][/td]\n';
-            bbcode += '[td][size=8](' + values.tops[i].pourcentage + ')[/size][/td]\n';
-            bbcode += '[/tr]\n\n';
+    bbcode += '[center][table][tr]\n';
+    if( values.tops[0].pseudo.length > 0 ) {
+        bbcode += '[td][list]\n';
+        for(let i=0; i<values.tops.length; i++){
+            if( values.tops[i].pseudo.length > 0 ) {
+                bbcode += '[*][size=10]' + values.tops[i].position + '[/size] [size=12][b][color=#17B4FF]' + values.tops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.tops[i].alliance + ' [/i][/color][/size] [size=10]' + values.tops[i].points + '[/size] [color=#00cc00][size=11][b]' + values.tops[i].progression + ' [/b][/size][/color] [size=8](' + values.tops[i].pourcentage + ')[/size]\n' ;
+            }
         }
+        bbcode += '[/list][/td]\n';
     }
-    bbcode += '[tr][td][/td]\n';
-    bbcode += '[td][/td]\n';
-    bbcode += '[td][/td]\n';
-    bbcode += '[td][/td]\n';
-    bbcode += '[td][/td]\n';
-    bbcode += '[/tr]\n\n';
-    for(let i=0; i<values.flops.length; i++){
-        if( values.flops[i].pseudo.length > 0 ) {
-            bbcode += '[tr][td][size=10]' + values.flops[i].position + '[/size][/td]\n';
-            bbcode += '[td][size=12][b][color=#17B4FF]' + values.flops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.flops[i].alliance + ' [/i][/color][/size][/td]\n';
-            bbcode += '[td][size=10]' + values.flops[i].points + '[/size][/td]\n';
-            bbcode += '[td][color=#FF0000][size=11][b]' + values.flops[i].progression + ' [/b][/size][/color][/td]\n';
-            bbcode += '[td][size=8](' + values.flops[i].pourcentage + ')[/size][/td]\n';
-            bbcode += '[/tr]\n\n';
+    if( values.flops[0].pseudo.length > 0 ) {
+        bbcode += '[td][list]\n';
+        for(let i=0; i<values.flops.length; i++){
+            if( values.flops[i].pseudo.length > 0 ) {
+                bbcode += '[*][size=10]' + values.flops[i].position + '[/size] [size=12][b][color=#17B4FF]' + values.flops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.flops[i].alliance + ' [/i][/color][/size] [size=10]' + values.flops[i].points + '[/size] [color=#FF0000][size=11][b]' + values.flops[i].progression + ' [/b][/size][/color] [size=8](' + values.flops[i].pourcentage + ')[/size]\n' ;
+            }
         }
+        bbcode += '[/list][/td]\n';
     }
-    bbcode += '[/table][/center]\n';
+    bbcode += '[/tr][/table][/center]\n';
     bbcode += '[center][size=8]By www.mmorpg-stat.eu [color=#aaaaaa]' + update + '[/color][/size][/center]\n';
-    bbcode += '[center][size=8]with [url=https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page]Export BBCODE mmorpg-stat[/url] by [url=https://twitter.com/Choubakawa]Choubakawa[/url][/size][/center]';
+    bbcode += '[center][size=8]with [url=https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page]Export BBCODE mmorpg-stat from Main Page[/url] by [url=https://twitter.com/Choubakawa]Choubakawa[/url][/size][/center]';
 
     return bbcode;
 }
@@ -170,13 +162,11 @@ if( addButtonExport() ) {
         $temp.val(bbcode).select();
         document.execCommand("copy");
         $temp.remove();
-        let spanToAdd = document.createElement("span");
-        spanToAdd.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+        let spanText = document.createElement("span");
+        spanText.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
         $( '#spanTextCopied' ).text( 'Copié !' );
         setTimeout(function () {
             $( '#spanTextCopied' ).text( '' );
         }, 3000);
     });
 }
-
-
