@@ -4,9 +4,9 @@ Generate the export of TOP/FLOP in BBOCDE from the Main Page for forum.
 
 This script give you the possibility to generate the BBCODE from the Main Page. 
 
-After installing the script from [OpenUserJs] the export will be add after the button Export.
+After installing the script from [OpenUserJs], the new buttons will be add after the button Export.
 
-After you click on the new button, the BBCODE will be add in your clipboard.
+After you click on one of the new buttons, the BBCODE will be add in your clipboard.
 
 ### Languages
 

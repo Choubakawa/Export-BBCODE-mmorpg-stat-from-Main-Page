@@ -21,36 +21,89 @@ function addButtonExport() {
 
        var spanButtonExport = buttonExport.closest( 'span' );
         parentButtonDiv = spanButtonExport.parentNode;
-        let spanNewButton = document.createElement("span");
-        spanNewButton.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+        let spanNewButtonBoardFR = document.createElement("span");
+        spanNewButtonBoardFR.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+        let spanNewButtonBoard = document.createElement("span");
+        spanNewButtonBoard.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+        let spanNewButtonFA = document.createElement("span");
+        spanNewButtonFA.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
         let spanTextCP = document.createElement("span");
         spanTextCP.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
         spanTextCP.setAttribute( 'id', 'spanTextCopied' );
 
-        let aButton = document.createElement("a");
-        aButton.setAttribute('class', 'tooltip_new1');
-        aButton.setAttribute('id', 'exportButtonAdded');
-        aButton.setAttribute('style', 'cursor:pointer');
+        let aButtonBoardFR = document.createElement("a");
+        aButtonBoardFR.setAttribute('class', 'tooltip_new1');
+        aButtonBoardFR.setAttribute('id', 'exportButtonBoardFR');
+        aButtonBoardFR.setAttribute('style', 'cursor:pointer');
 
-        let imgButton = document.createElement("img");
-        imgButton.setAttribute('src', 'img/list_plus.png');
-        imgButton.setAttribute('id', 'imgButtonAdded');
-        imgButton.setAttribute('width', '16px');
-        imgButton.setAttribute('height', '14px');
-        imgButton.setAttribute('border', '0');
-        imgButton.setAttribute('align', 'absmiddle');
+        let aButtonBoard = document.createElement("a");
+        aButtonBoard.setAttribute('class', 'tooltip_new1');
+        aButtonBoard.setAttribute('id', 'exportButtonBoard');
+        aButtonBoard.setAttribute('style', 'cursor:pointer');
 
-        let tooltip = document.createElement("em");
-        let textTool = document.createElement("center");
+        let aButtonFA = document.createElement("a");
+        aButtonFA.setAttribute('class', 'tooltip_new1');
+        aButtonFA.setAttribute('id', 'exportButtonFA');
+        aButtonFA.setAttribute('style', 'cursor:pointer');
 
-        textTool.append( "Copier export BBCODE " );
-        tooltip.append( textTool );
-        aButton.append( imgButton );
-        aButton.append( tooltip );
-        spanNewButton.append( aButton );
+        let imgButtonBoardFR = document.createElement("img");
+        imgButtonBoardFR.setAttribute('src', 'img/list_plus.png');
+        imgButtonBoardFR.setAttribute('id', 'imgButtonBoardFR');
+        imgButtonBoardFR.setAttribute('width', '16px');
+        imgButtonBoardFR.setAttribute('height', '14px');
+        imgButtonBoardFR.setAttribute('border', '0');
+        imgButtonBoardFR.setAttribute('align', 'absmiddle');
+        imgButtonBoardFR.setAttribute('style', 'background: blue');
 
-        parentButtonDiv.insertBefore(spanNewButton, spanButtonExport.nextSibling);
-        parentButtonDiv.insertBefore(spanTextCP, spanNewButton.nextSibling);
+        let imgButtonBoard = document.createElement("img");
+        imgButtonBoard.setAttribute('src', 'img/list_plus.png');
+        imgButtonBoard.setAttribute('id', 'imgButtonBoard');
+        imgButtonBoard.setAttribute('width', '16px');
+        imgButtonBoard.setAttribute('height', '14px');
+        imgButtonBoard.setAttribute('border', '0');
+        imgButtonBoard.setAttribute('align', 'absmiddle');
+        imgButtonBoard.setAttribute('style', 'background: #7d7d7d');
+
+        let imgButtonFA = document.createElement("img");
+        imgButtonFA.setAttribute('src', 'img/list_plus.png');
+        imgButtonFA.setAttribute('id', 'imgButtonFA');
+        imgButtonFA.setAttribute('width', '16px');
+        imgButtonFA.setAttribute('height', '14px');
+        imgButtonFA.setAttribute('border', '0');
+        imgButtonFA.setAttribute('align', 'absmiddle');
+        imgButtonFA.setAttribute('style', 'background: red');
+
+        let tooltipBoardFR = document.createElement("em");
+        let textToolBoardFR = document.createElement("center");
+
+        let tooltipBoard = document.createElement("em");
+        let textToolBoard = document.createElement("center");
+
+        let tooltipFA = document.createElement("em");
+        let textToolFA = document.createElement("center");
+
+        textToolBoardFR.append( "Export BBCODE (forum ogame [center])" );
+        tooltipBoardFR.append( textToolBoardFR );
+        aButtonBoardFR.append( imgButtonBoardFR );
+        aButtonBoardFR.append( tooltipBoardFR );
+        spanNewButtonBoardFR.append( aButtonBoardFR );
+
+        textToolBoard.append( "Export BBCODE (forum ogame [align])" );
+        tooltipBoard.append( textToolBoard );
+        aButtonBoard.append( imgButtonBoard );
+        aButtonBoard.append( tooltipBoard );
+        spanNewButtonBoard.append( aButtonBoard );
+
+        textToolFA.append( "Export BBCODE ForumActif" );
+        tooltipFA.append( textToolFA );
+        aButtonFA.append( imgButtonFA );
+        aButtonFA.append( tooltipFA );
+        spanNewButtonFA.append( aButtonFA );
+
+        parentButtonDiv.insertBefore(spanNewButtonBoardFR, spanButtonExport.nextSibling);
+        parentButtonDiv.insertBefore(spanNewButtonBoard, spanNewButtonBoardFR.nextSibling);
+        parentButtonDiv.insertBefore(spanNewButtonFA, spanNewButtonBoard.nextSibling);
+        parentButtonDiv.insertBefore(spanTextCP, spanNewButtonFA.nextSibling);
 
         return true;
     } else {
@@ -110,7 +163,26 @@ function getTopFLop() {
     return value;
 }
 
-function generateBBCODE( values ) {
+function generateBBCODE( values, forumCible, alignType ) {
+
+    let baliseCenter = "center";
+    let closeBaliseCenter = "center";
+    let verySmall = "8";
+    let small = "10";
+    let medium = "11";
+    let big = "12";
+
+    if( alignType === "align" ) {
+        baliseCenter = "align=center";
+        closeBaliseCenter= "align";
+    }
+
+    if( forumCible === "BOARD" ) {
+        verySmall = "8";
+        small = "8";
+        medium = "8";
+        big = "8";
+    }
 
     let titleTop = document.getElementsByClassName( 'titre_accueil_top' )[0].textContent.toUpperCase().trim();
     let titleFlop = document.getElementsByClassName( 'titre_accueil_top' )[1].textContent.toUpperCase().trim();
@@ -124,49 +196,97 @@ function generateBBCODE( values ) {
     let day = date.substring( date.indexOf( '>' ) + 1, date.indexOf( '&' ) ).trim();
     let update = date.replace( '<br>', ' ' ).replace( '&nbsp;', ' ' ).trim();
 
-    let bbcode = '[center][size=11][b]' + titleTop + ' / ' + titleFlop + ' ' + universe + ' [' + country + '][/b][/size][/center]\n';
-    bbcode += '[center][size=11][b]' + type + ' ' + day + '[/b][/size][/center]\n';
-    bbcode += '[center][table][tr]\n';
-    if( values.tops[0].pseudo.length > 0 ) {
-        bbcode += '[td][list]\n';
-        for(let i=0; i<values.tops.length; i++){
-            if( values.tops[i].pseudo.length > 0 ) {
-                bbcode += '[*][size=10]' + values.tops[i].position + '[/size] [size=12][b][color=#17B4FF]' + values.tops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.tops[i].alliance + ' [/i][/color][/size] [size=10]' + values.tops[i].points + '[/size] [color=#00cc00][size=11][b]' + values.tops[i].progression + ' [/b][/size][/color] [size=8](' + values.tops[i].pourcentage + ')[/size]\n' ;
+    let bbcode = '[' + baliseCenter + '][size=' + medium + '][b]' + titleTop + ' / ' + titleFlop + ' ' + universe + ' [' + country + '][/b][/size][/' + closeBaliseCenter + ']\n';
+    bbcode += '[' + baliseCenter + '][size=' + medium + '][b]' + type + ' ' + day + '[/b][/size][/' + closeBaliseCenter + ']\n';
+    bbcode += '[' + baliseCenter + '][table][tr]\n';
+    if( forumCible === "BOARD" ) {
+        if( values.tops[0].pseudo.length > 0 ) {
+            bbcode += '[td]\n';
+            for(let i=0; i<values.tops.length; i++){
+                if( values.tops[i].pseudo.length > 0 ) {
+                    bbcode += '[align=left][size=' + small + ']' + values.tops[i].position + '[/size] [size=' + big + '][b][color=#17B4FF]' + values.tops[i].pseudo + ' [/color][/b][/size] [size=' + small + '][color=#8AD9FF][i]' + values.tops[i].alliance + ' [/i][/color][/size] [size=' + small + ']' + values.tops[i].points + '[/size] [color=#00cc00][size=' + medium + '][b]' + values.tops[i].progression + ' [/b][/size][/color] [size=' + verySmall + '](' + values.tops[i].pourcentage + ')[/size][/align]\n' ;
+                }
             }
+            bbcode += '[/td]\n';
         }
-        bbcode += '[/list][/td]\n';
-    }
-    if( values.flops[0].pseudo.length > 0 ) {
-        bbcode += '[td][list]\n';
-        for(let i=0; i<values.flops.length; i++){
-            if( values.flops[i].pseudo.length > 0 ) {
-                bbcode += '[*][size=10]' + values.flops[i].position + '[/size] [size=12][b][color=#17B4FF]' + values.flops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.flops[i].alliance + ' [/i][/color][/size] [size=10]' + values.flops[i].points + '[/size] [color=#FF0000][size=11][b]' + values.flops[i].progression + ' [/b][/size][/color] [size=8](' + values.flops[i].pourcentage + ')[/size]\n' ;
+        if( values.flops[0].pseudo.length > 0 ) {
+            bbcode += '[td]\n';
+            for(let i=0; i<values.flops.length; i++){
+                if( values.flops[i].pseudo.length > 0 ) {
+                    bbcode += '[align=left][size=' + small + ']' + values.flops[i].position + '[/size] [size=' + big + '][b][color=#17B4FF]' + values.flops[i].pseudo + ' [/color][/b][/size] [size=' + small + '][color=#8AD9FF][i]' + values.flops[i].alliance + ' [/i][/color][/size] [size=' + small + ']' + values.flops[i].points + '[/size] [color=#FF0000][size=' + medium + '][b]' + values.flops[i].progression + ' [/b][/size][/color] [size=' + verySmall + '](' + values.flops[i].pourcentage + ')[/size][/align]\n' ;
+                }
             }
+            bbcode += '[/td]\n';
         }
-        bbcode += '[/list][/td]\n';
+    } else {
+        if( values.tops[0].pseudo.length > 0 ) {
+            bbcode += '[td][table]\n';
+            for(let i=0; i<values.tops.length; i++){
+                if( values.tops[i].pseudo.length > 0 ) {
+                    bbcode += '[tr][td][size=' + small + ']' + values.tops[i].position + '[/size][/td]\n';
+                    bbcode += '[td][size=' + big + '][b][color=#17B4FF]' + values.tops[i].pseudo + ' [/color][/b][/size] [size=10][color=#8AD9FF][i]' + values.tops[i].alliance + ' [/i][/color][/size][/td]\n';
+                    bbcode += '[td][size=' + small + ']' + values.tops[i].points + '[/size][/td]\n';
+                    bbcode += '[td][color=#00cc00][size=11][b]' + values.tops[i].progression + ' [/b][/size][/color][/td]\n';
+                    bbcode += '[td][size=8](' + values.tops[i].pourcentage + ')[/size][/td]\n';
+                    bbcode += '[/tr]\n\n';
+                }
+            }
+            bbcode += '[/table][/td]\n';
+        }
+        if( values.flops[0].pseudo.length > 0 ) {
+            bbcode += '[td][table]\n';
+            for(let i=0; i<values.flops.length; i++){
+                if( values.flops[i].pseudo.length > 0 ) {
+                    bbcode += '[tr][td][size=' + small + ']' + values.flops[i].position + '[/size][/td]\n';
+                    bbcode += '[td][size=' + big + '][b][color=#17B4FF]' + values.flops[i].pseudo + ' [/color][/b][/size] [size=' + small + '][color=#8AD9FF][i]' + values.flops[i].alliance + ' [/i][/color][/size][/td]\n';
+                    bbcode += '[td][size=' + small + ']' + values.flops[i].points + '[/size][/td]\n';
+                    bbcode += '[td][color=#FF0000][size=' + medium + '][b]' + values.flops[i].progression + ' [/b][/size][/color][/td]\n';
+                    bbcode += '[td][size=' + verySmall + '](' + values.flops[i].pourcentage + ')[/size][/td]\n';
+                    bbcode += '[/tr]\n\n';
+                }
+            }
+            bbcode += '[/table][/td]\n';
+        }
     }
-    bbcode += '[/tr][/table][/center]\n';
-    bbcode += '[center][size=8]By www.mmorpg-stat.eu [color=#aaaaaa]' + update + '[/color][/size][/center]\n';
-    bbcode += '[center][size=8]with [url=https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page]Export BBCODE mmorpg-stat from Main Page[/url] by [url=https://twitter.com/Choubakawa]Choubakawa[/url][/size][/center]';
+    bbcode += '[/tr][/table][/' + closeBaliseCenter + ']\n';
+    bbcode += '[' + baliseCenter + '][size=' + verySmall + ']By www.mmorpg-stat.eu [color=#aaaaaa]' + update + '[/color][/size][/' + closeBaliseCenter + ']\n';
+    bbcode += '[' + baliseCenter + '][size=' + verySmall + ']with [url=https://openuserjs.org/scripts/Choubakawa/Export_BBCODE_mmorpg-stat_from_Main_Page]Export BBCODE mmorpg-stat from Main Page[/url] by [url=https://twitter.com/Choubakawa]Choubakawa[/url][/size][/' + closeBaliseCenter + ']';
 
     return bbcode;
 }
 
+function copy( bbcode ) {
+
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val(bbcode).select();
+    document.execCommand("copy");
+    $temp.remove();
+    let spanText = document.createElement("span");
+    spanText.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
+    $( '#spanTextCopied' ).text( 'Copié !' );
+    setTimeout(function () {
+        $( '#spanTextCopied' ).text( '' );
+    }, 3000);
+}
+
 if( addButtonExport() ) {
 
-    $("#exportButtonAdded").click(function () {
+    $("#exportButtonBoardFR").click(function () {
 
-        let bbcode = generateBBCODE( getTopFLop() );
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val(bbcode).select();
-        document.execCommand("copy");
-        $temp.remove();
-        let spanText = document.createElement("span");
-        spanText.setAttribute( 'style', 'float: left;margin: 3px 0px 0px 10px ' );
-        $( '#spanTextCopied' ).text( 'Copié !' );
-        setTimeout(function () {
-            $( '#spanTextCopied' ).text( '' );
-        }, 3000);
+        let bbcode = generateBBCODE( getTopFLop(), "BOARD", "center" );
+        copy( bbcode );
+    });
+
+    $("#exportButtonBoard").click(function () {
+
+        let bbcode = generateBBCODE( getTopFLop(), "BOARD", "align" );
+        copy( bbcode );
+    });
+
+    $("#exportButtonFA").click(function () {
+
+        let bbcode = generateBBCODE( getTopFLop(), "FORUMACTIF", "center" );
+        copy( bbcode );
     });
 }
