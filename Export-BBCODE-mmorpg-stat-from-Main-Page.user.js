@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      1.1
+// @version      1.2
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -192,7 +192,7 @@ function generateBBCODE( values, forumCible, alignType ) {
     });
     let country = info[1].replace( 'OGAME.', '' ).toLowerCase();
     let universe = info[2].charAt(0).toUpperCase() + info[2].slice(1).toLowerCase();
-    let date = document.getElementsByTagName( 'table' )[0].getElementsByTagName( 'td' )[1].getElementsByTagName( 'table' )[0].getElementsByTagName( 'td' )[6].getElementsByTagName( 'table' )[0].getElementsByTagName( 'td' )[1].getElementsByTagName( 'span' )[0].innerHTML;
+    let date = document.getElementsByTagName( 'table' )[0].getElementsByTagName( 'td' )[1].getElementsByTagName( 'table' )[0].getElementsByTagName( 'td' )[8].getElementsByTagName( 'table' )[0].getElementsByTagName( 'td' )[1].getElementsByTagName( 'span' )[0].innerHTML;
     let day = date.substring( date.indexOf( '>' ) + 1, date.indexOf( '&' ) ).trim();
     let update = date.replace( '<br>', ' ' ).replace( '&nbsp;', ' ' ).trim();
 
