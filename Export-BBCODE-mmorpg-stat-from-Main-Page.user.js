@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Export BBCODE mmorpg-stat from Main Page
 // @namespace    https://www.mmorpg-stat.eu/base.php
-// @version      1.2
+// @version      1.3
 // @description  Generate the export of TOP/FLOP in BBOCDE from the main page of mmorpg-stat.eu.
 // @author       Choubakawa (Ogame.fr uni Fornax)
 // @match        https://www.mmorpg-stat.eu/base.php*
@@ -187,7 +187,10 @@ function generateBBCODE( values, forumCible, alignType ) {
     let titleTop = document.getElementsByClassName( 'titre_accueil_top' )[0].textContent.toUpperCase().trim();
     let titleFlop = document.getElementsByClassName( 'titre_accueil_top' )[1].textContent.toUpperCase().trim();
     let type = document.getElementsByClassName( 'titre_accueil_top' )[0].nextElementSibling.textContent.toLowerCase().trim();
-    let info = Array.prototype.map.call( document.getElementById( 'cbp-hrmenu' ).getElementsByTagName( 'li' ), function(li) {
+    let info = Array.prototype.map.call( document.getElementById( 'cbp-hrmenu' ).getElementsByTagName( 'li' ), function(li, i) {
+        if( i == 2 ) {
+            return li.firstChild.textContent.trim();
+        }
         return li.firstChild.nextSibling.textContent.trim();
     });
     let country = info[1].replace( 'OGAME.', '' ).toLowerCase();
